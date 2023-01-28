@@ -38,7 +38,9 @@ h1 {
 }
 
 #app {
-  max-width: 1280px;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1920px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -57,7 +59,27 @@ h1 {
 }
 
 .card {
-  padding: 2em;
+  margin-bottom: 20px;
+  padding: 1em;
+  width: 200px;
+  height: 150px;
+  background-color: gray;
+  border: 1px solid wheat;
+  border-radius: 6px;
+}
+
+.card:not(:last-child) {
+  margin-right: 20px;
+}
+
+.card__title {
+  margin: 0 0 10px;
+  color: #0c304c;
+}
+
+.card__text {
+  height: 120px;
+  overflow-y: scroll;
 }
 
 button {
