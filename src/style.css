@@ -59,10 +59,14 @@ h1 {
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   margin-bottom: 20px;
   padding: 1em;
   width: 200px;
-  height: 150px;
+  /*min-height: 290px;*/
+  height: 200px;
   background-color: gray;
   border: 1px solid wheat;
   border-radius: 6px;
@@ -78,6 +82,7 @@ h1 {
 }
 
 .card__text {
+  margin: 0;
   height: 120px;
   overflow-y: scroll;
 }
