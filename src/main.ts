@@ -9,16 +9,16 @@ type Post = {
   body: string
 }
 
-const createCard = (object: Post) => {
+const createCard = (object: Post): HTMLDivElement => {
   const card: HTMLDivElement = document.createElement('div')
-  const title: HTMLHeadElement = document.createElement('h3')
-  const text: HTMLParagraphElement = document.createElement('p')
-
   card.className = 'card'
-  title.className = 'card__title'
-  text.className = 'card__text'
 
+  const title: HTMLHeadElement = document.createElement('h3')
+  title.className = 'card__title'
   title.textContent = object.title
+
+  const text: HTMLParagraphElement = document.createElement('p')
+  text.className = 'card__text'
   text.textContent = object.body
 
   card.append(title, text)
@@ -26,11 +26,15 @@ const createCard = (object: Post) => {
   return card
 }
 
-const getDataFromAPI = async (url: string): Promise<Post[]> => fetch(url)
+const getPosts = async (): Promise<Post[]> => fetch('https://jsonplaceholder.typicode.com/posts')
   .then(response => response.json())
-  .then(json => json.forEach((post: Post) => {
-    const node = createCard(post)
-    appGrid.appendChild(node)
-  }))
+  .then(json => json)
 
-getDataFromAPI('https://jsonplaceholder.typicode.com/posts')
+const appendPosts = async () => {
+  const postsList = await getPosts()
+
+  appGrid.append(...postsList.map((post) => createCard(post)))
+}
+
+appendPosts().then()
+
